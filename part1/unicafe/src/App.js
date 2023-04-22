@@ -25,12 +25,14 @@ function Statistics(props) {
   if (all > 0) {
       statistics = (
         <div className='feedback result'>
-          <StatisticsLine text="good" value={props.good}/>
-          <StatisticsLine text="neutral" value={props.neutral}/>
-          <StatisticsLine text="bad" value={props.bad}/>
-          <StatisticsLine text="all" value={all}/>
-          <StatisticsLine text="average" value={avg}/>
-          <StatisticsLine text="positive" value={positive + "%"}/>
+          <table>
+            <StatisticsLine text="good" value={props.good}/>
+            <StatisticsLine text="neutral" value={props.neutral}/>
+            <StatisticsLine text="bad" value={props.bad}/>
+            <StatisticsLine text="all" value={all}/>
+            <StatisticsLine text="average" value={avg}/>
+            <StatisticsLine text="positive" value={positive + "%"}/>
+          </table>
         </div>
       )
   }
@@ -52,7 +54,10 @@ function Statistics(props) {
 function StatisticsLine(props) {
   return (  
   <div>
-    {props.text} {props.value}
+    <tr> 
+      <td>{props.text}</td>
+      <td>{props.value}</td>
+    </tr>
   </div>
   )
 }
