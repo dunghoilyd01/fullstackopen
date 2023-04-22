@@ -12,18 +12,51 @@ const App = () => {
       <Button counter={good} setMethod={setGood} text="good"></Button>
       <Button counter={neutral} setMethod={setNeutral} text="neutral"></Button>
       <Button counter={bad} setMethod={setBad} text="bad"></Button>
+      <Statistics good={good} bad={bad} neutral={neutral}/>
     </div>
+
   )
 }
 function Statistics(props) {
   let all = props.good + props.neutral + props.bad;
-  let Statistics; 
+  let statistics; 
   let avg = (props.good - props.bad) / all;
   let positive = (props.good / all) * 100;
   if (all > 0) {
-
+      statistics = (
+        <div className='feedback result'>
+          <StatisticsLine text="good" value={props.good}/>
+          <StatisticsLine text="neutral" value={props.neutral}/>
+          <StatisticsLine text="bad" value={props.bad}/>
+          <StatisticsLine text="all" value={all}/>
+          <StatisticsLine text="average" value={avg}/>
+          <StatisticsLine text="positive" value={positive + "%"}/>
+        </div>
+      )
   }
+  else {
+    statistics = (
+      <div className='feedback result'>
+        No feedback given
+      </div>
+    )
+  }
+  return (
+    <div>
+      <h1>statistics</h1>
+      {statistics}
+    </div>
+  )
 }
+
+function StatisticsLine(props) {
+  return (  
+  <div>
+    {props.text} {props.value}
+  </div>
+  )
+}
+
 
 const Button = (props) => {
   const increaseByOne = () => {
